@@ -2,6 +2,7 @@ import React                  from 'react';
 import { connect }            from 'react-redux';
 import counterActions         from 'actions/counter';
 import { Link }               from 'react-router';
+import r                     from '../../../../config/route_config';
 
 // We define mapStateToProps where we'd normally use
 // the @connect decorator so the data requirements are clear upfront, but then
@@ -27,7 +28,7 @@ export class HomeView extends React.Component {
           Increment
         </button>
         <hr />
-        <Link to='/about'>Go To About View</Link>
+        <Link to={r.baseRoute + 'about'}>Go To About View</Link>
       </div>
     );
   }

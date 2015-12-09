@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
+import r                     from '../../../../config/route_config';
 
 const AboutView = () => (
   <div className='container text-center'>
     <h1>This is the about view!</h1>
     <hr />
-    <Link to='/'>Back To Home View</Link>
+    <Link to={r.baseRoute}>Back To Home View</Link>
   </div>
 );
 

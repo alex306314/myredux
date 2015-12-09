@@ -1,6 +1,7 @@
 import webpack           from 'webpack';
 import cssnano           from 'cssnano';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import WebpackCleanupPlugin from 'webpack-cleanup-plugin';
 import config            from '../../config';
 
 const paths = config.utils_paths;
@@ -20,9 +21,10 @@ const webpackConfig = {
   output : {
     filename   : '[name].[hash].js',
     path       : paths.base(config.dir_dist),
-    publicPath : '/'
+    publicPath : config.publicPath
   },
   plugins : [
+    new WebpackCleanupPlugin({exclude:[]}),
     new webpack.DefinePlugin(config.globals),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
@@ -32,7 +34,7 @@ const webpackConfig = {
       filename : 'index.html',
       inject   : 'body',
       minify   : {
-        collapseWhitespace : true
+        collapseWhitespace : false
       }
     })
   ],
@@ -45,7 +47,11 @@ const webpackConfig = {
       {
         test : /\.(js|jsx)$/,
         exclude : /node_modules/,
-        loader  : 'babel',
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react']
+        }
+        /*loader  : 'babel',
         query   : {
           stage    : 0,
           optional : ['runtime'],
@@ -62,7 +68,7 @@ const webpackConfig = {
               }
             }
           }
-        }
+        }*/
       },
       {
         test    : /\.scss$/,

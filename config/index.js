@@ -2,6 +2,12 @@ import fs       from 'fs';
 import path     from 'path';
 import { argv } from 'yargs';
 
+//TODO: change the development folder
+const current_app = '201512/starter';
+//静态文件路径
+const publicPath = '';
+
+
 const debug = require('debug')('kit:config');
 debug('Create configuration.');
 
@@ -12,10 +18,12 @@ const config = {
   // Project Structure
   // ----------------------------------
   path_base  : path.resolve(__dirname, '../'),
-  dir_client : 'src',
-  dir_dist   : 'dist',
+  dir_client : 'src/' + current_app,
+  dir_dist   : 'dist/' + current_app,
   dir_server : 'server',
   dir_test   : 'tests',
+
+  publicPath  : publicPath,
 
   // ----------------------------------
   // Server Configuration

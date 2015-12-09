@@ -1,4 +1,4 @@
-require('babel/register');
+require('babel-core/register');
 
 const config   = require('../config');
 const debug    = require('debug')('kit:bin:compile');

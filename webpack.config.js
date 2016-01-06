@@ -48,7 +48,12 @@ module.exports = {
   },
   plugins: plugins,
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
+    alias:{
+      jquery: "../../../js/jquery1.9.js",
+      wow: "../../../js/wow.min.js",
+      zepto: "../../../../node_modules/zepto/zepto.min.js"
+    }
   },
   module: {
     loaders: [
@@ -85,12 +90,5 @@ module.exports = {
     }
 
     ]
-  },
-  resolve:{
-    alias:{
-      jquery: "../../../js/jquery1.9.js",
-      wow: "../../../js/wow.min.js",
-      zepto: "../../../../node_modules/zepto/zepto.min.js"
-    }
   }
 };

@@ -1,0 +1,19 @@
+.myul-list{
+  .lides{
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    height: 43px;
+    line-height: 22px;
+    margin-top: 3px;
+    text-align:justify;
+  }
+  .liti{
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width:100%;
+    color:#333;
+  }
+}

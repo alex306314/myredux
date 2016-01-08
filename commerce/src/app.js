@@ -11,8 +11,11 @@ import { appReducer } from './reducers';
 import history from './utils/history';
 import {
   MainView,
-  AppView
+  AppView,
+  CategoryView,
 } from './views';
+
+window.$ = mui||-1;
 
 const reducer = combineReducers(
   Object.assign({}, {appReducer},  {routing: routeReducer})
@@ -28,7 +31,7 @@ ReactDOM.render((
     <Router history={history}>
       <Route path="/" component={AppView}>
         <IndexRoute component={MainView} />
-
+        <Route path="category" component={CategoryView} />
       </Route>
     </Router>
   </Provider>

@@ -3,14 +3,13 @@
  */
 import './SlideMenu.scss';
 import React from 'react';
-import uuid from '../../../../common/utils/uuid';
 
 export default class SlideMenu extends React.Component
 {
   constructor(props){
     super(props)
     this.state = {
-      uuid:uuid()
+      uuid:g.utils.uuid()
     }
   }
   componentDidMount(){

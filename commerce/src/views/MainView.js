@@ -1,15 +1,15 @@
 import React from 'react'
-import PullRefreshLoad from '../components/PullRefreshLoad'
-import SlideMenu from '../components/SlideMenu'
 import Header from '../components/Header'
-import ImageSlide from '../components/ImageSlide'
-import NewsList from '../components/NewsList'
+//import PullRefresh from '../components/PullRefresh'
+import IScrollPullRefresh from '../components/IScrollPullRefresh'
 
+//import ReactPullToRefresh from 'react-pull-to-refresh'
 import history from '../utils/history';
 
 export default class MainView extends React.Component
 {
-
+  componentDidMount(){
+  }
   render(){
     var items = ['首页','国内新闻','国际新闻','经济时报','经济半小时','哈哈哈'];
     var imageItems = [
@@ -30,18 +30,36 @@ export default class MainView extends React.Component
         des:'要把修复长江生态环境摆在压倒性位置,共抓大保护先行试点的中国（杭州）跨境电子商务综合'},
     ];
 
+
     return (
       <div>
         <Header showSearch={true}/>
 
         <div className="mui-content headercon">
-          <PullRefreshLoad>
-            <SlideMenu items={items} menuClick={this.menuClick}/>
+          <IScrollPullRefresh
+            height={innerHeight-44}
+            >
 
-            <ImageSlide items={imageItems}/>
             <div className="mainrecti">热门推荐</div>
-            <NewsList items={indexNews}/>
-          </PullRefreshLoad>
+            <ul className="sample">
+              <li>列表项1</li>
+              <li>列表项2</li>
+              <li>列表项3</li>
+              <li>列表项4</li>
+              <li>列表项5</li>
+              <li>列表项6</li>
+              <li>列表项7</li>
+              <li>列表项8</li>
+              <li>列表项9</li>
+              <li>列表项10</li>
+              <li>列表项11</li>
+              <li>列表项12</li>
+              <li>列表项13</li>
+              <li>列表项14</li>
+              <li>列表项15</li>
+            </ul>
+
+          </IScrollPullRefresh>
         </div>
       </div>
     );
@@ -49,5 +67,16 @@ export default class MainView extends React.Component
   menuClick(e){
     const index = e.detail.slideNumber;
     history.push('/category')
+  }
+  handleRefresh(resolve, reject) {
+    // do some async code here
+    setTimeout(function(){
+      if (1) {
+        resolve();
+      } else {
+        reject();
+      }
+    },2000);
+
   }
 }

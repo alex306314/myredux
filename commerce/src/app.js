@@ -1,7 +1,7 @@
-import './app.scss'
 
-import React from 'react';
-import ReactDOM from 'react-dom';
+import './app.scss'
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { Router, Route, Link, IndexRoute} from 'react-router'
 import { createStore, combineReducers } from 'redux';
 import { Provider }  from 'react-redux';
@@ -13,15 +13,13 @@ import {
   MainView,
   AppView,
   CategoryView,
-} from './views';
-
-window.$ = mui||-1;
+} from './views'
+import '../../common/utils/uuid'
 
 const reducer = combineReducers(
   Object.assign({}, {appReducer},  {routing: routeReducer})
 )
 let store = createStore(reducer);
-
 
 syncReduxAndRouter(history, store)
 g.store = store;

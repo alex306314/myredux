@@ -1,12 +1,40 @@
-.myul-list{
+.i_news_list_ul{
+  display: block;
+  width:100%;
+  margin:0;
+  padding:0;
+  .li{
+    display: block;
+    list-style: none;
+    margin:0 0.1rem;
+    padding:0.2rem 0;
+    position: relative;
+    border:0;
+    border-bottom:1px solid transparent;
+    &:after{
+      display:block;
+      content:"";
+      clear:both;
+      visibility:hidden;
+      height:0;
+    }
+    &:first-child{
+      border-top:1px solid transparent;
+    }
+  }
+  .a{
+    display: block;
+  }
   .lides{
     overflow: hidden;
     white-space: normal;
     text-overflow: ellipsis;
-    height: 43px;
-    line-height: 22px;
-    margin-top: 3px;
+    height: 0.85rem;
+    line-height: 0.42rem;
+    margin-top: 0.03rem;
     text-align:justify;
+    font-size:0.26rem;
+    color:#999;
   }
   .liti{
     display: inline-block;
@@ -15,5 +43,24 @@
     overflow: hidden;
     width:100%;
     color:#333;
+    font-size:0.32rem;
+    height:0.45rem;
+    line-height:0.45rem;
+  }
+  .imgw{
+    display: block;
+    float:left;
+    height:1.4rem;
+    width:1.87rem;
+    //margin-right:0.2rem;
+    overflow: hidden;
+  }
+  .img{
+    height:1.4rem;
+    width:1.87rem;
+  }
+  .nbody{
+    float:right;
+    width:4.15rem;
   }
 }

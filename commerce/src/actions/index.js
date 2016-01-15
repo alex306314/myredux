@@ -6,3 +6,10 @@ export function showAlert(msg){
     msg: msg
   }
 }
+
+export function setCurrentMenuId(menuId=1){
+  return {
+    type:types.SET_CURRENT_MENU_ID,
+    id: menuId
+  }
+}

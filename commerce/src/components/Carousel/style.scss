@@ -1,0 +1,81 @@
+.iscroll_carousel{
+  width:100%;
+  position: relative;
+  height:250px;
+  z-index: 50;
+  .car_ul{
+    display: block;
+    width:6000px;
+    height:250px;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+  }
+  .li{
+    list-style: none;
+    display: none;
+    position:absolute;
+    //float:left;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    z-index: 51;
+    &.active,
+    &.prev,
+    &.next{
+      z-index: 55;
+      display: block;
+    }
+  }
+  .caim{
+    display: block;
+    width:100%;
+    height:100%;
+    background: #d1d1d1;
+  }
+  .cati{
+    display: block;
+    position:absolute;
+    z-index: 55;
+    width:100%;
+    height:40px;
+    bottom:0;
+    left:0;
+    color:white;
+    font-size:14px;
+    line-height: 40px;
+    background-image: -webkit-linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0));
+    background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0));
+    .pin{
+      margin-left:10px;
+    }
+  }
+  .car_indicator{
+    position: absolute;
+    bottom:15px;
+    right:10px;
+    width:auto;
+    height:10px;
+    text-align: right;
+    line-height: 3px;
+    z-index: 55;
+    .i{
+      display: inline-block;
+      width:4px;
+      height:4px;
+      margin-left:5px;
+      background-color:#999;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      position: relative;
+      &.active{
+        background: white;
+        width:6px;
+        height:6px;
+        top:1px;
+      }
+    }
+  }
+}

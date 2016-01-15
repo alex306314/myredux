@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" name="viewport">
-  <script>!function(a,b){function c(){document.querySelector("html").style.fontSize=html_font_size+"px"}document.querySelector("meta[name=viewport]");a.html_font_size=100*a.innerWidth/b,c(),a.onresize=c}(window,640);</script>
+  <script>!function(a,b){var w= a.innerWidth>640?640: a.innerWidth;function c(){document.querySelector("html").style.fontSize=html_font_size+"px"}document.querySelector("meta[name=viewport]");a.html_font_size=100*w/b,c(),a.onresize=c}(window,640);</script>
   <script>
     window.g = {};
 
@@ -21,6 +21,7 @@
 <div id="container"></div>
 
 <!--<script src="../../common/js/zepto.min.js"></script>-->
+<script src="../../common/js/hammer.min.js"></script>
 <script src="../../common/js/jquery2.02.min.js"></script>
 <script src="../../common/iscroll/iscroll-probe.js"></script>
 <script src="../../common/js/react.js"></script>

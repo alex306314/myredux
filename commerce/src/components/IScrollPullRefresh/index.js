@@ -2,14 +2,20 @@
  * iscrll 实现下拉刷新
  *
  *
- * if( (
- (this.canRefresh && !this.canLoading)
- ||
- (!this.canRefresh && this.canLoading)
- )
- && this.moved
- && this.resetPosition(this.options.bounceTime)){
-      return
+ if(this.options.isPullRefreshC){
+      if( (
+          (this.canRefresh && !this.canLoading)
+          ||
+          (!this.canRefresh && this.canLoading)
+        )
+        && this.moved
+        && this.resetPosition(this.options.bounceTime)){
+        return
+      }
+    }else{
+      if (this.resetPosition(this.options.bounceTime) ) {
+        	return;
+      }
     }
  *
  * 解决点击自动下拉 需要修改iscroll-probe 560行 _end函数内部判断机制
@@ -54,7 +60,7 @@ export default class IScrollPullRefresh extends React.Component
       ,loadingHandle = this.props.loadingHandle || self.loadingHandle
       ,a=1;
 
-    window.c = this;
+    //window.c = this;
 
     self.initIScroll();
     //划动事件
@@ -213,7 +219,8 @@ export default class IScrollPullRefresh extends React.Component
       //topOffset: self.state.distance*(-1),
       useTransform: false,
       bindToWrapper: true,
-      maxScrollY:-50
+      maxScrollY:-50,
+      isPullRefreshC: true
     });
     //this.iscroll.scrollTo(0,self.state.distance*(-1),0)
   }
@@ -230,7 +237,7 @@ export default class IScrollPullRefresh extends React.Component
     var loadingCls = showLoading?'show':'';
 
     return (
-      <div id={this.state.id} className="rd_iscroll_ptr {loadingCls}"
+      <div id={this.state.id} className={"rd_iscroll_ptr "+loadingCls}
            style={{height:height+'px'}}>
         <div className="ptr_scroller" style={{height:scrollerHeight}}>
 

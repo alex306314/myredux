@@ -29,7 +29,7 @@ ReactDOM.render((
     <Router history={history}>
       <Route path="/" component={AppView}>
         <IndexRoute component={MainView} />
-        <Route path="category" component={CategoryView} />
+        <Route path="category/:menuId" component={CategoryView} />
       </Route>
     </Router>
   </Provider>

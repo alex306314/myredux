@@ -4,6 +4,7 @@ $winw: 6.4rem;
 html{font-size:100px;
   -webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
+ul, ol, p, h1, h2, h3, h4, h5, h6, dl, dt, dd ,form ,textarea ,input{margin:0;}
 body{
   font-size: 16px;
   font-family:'Microsoft YaHei', Arial, Helvetica, sans-serif!important;
@@ -11,8 +12,8 @@ body{
   overflow-x: hidden;
   width:$winw;
   position: relative;
+  margin: 0 auto;
 }
-body, ul, ol, p, h1, h2, h3, h4, h5, h6, dl, dt, dd ,form ,textarea ,input{margin:0;}
 img{width:100%;}
 .max_width{
   width:$winw;
@@ -20,12 +21,10 @@ img{width:100%;}
   position: relative;
   overflow: hidden;
 }
-body{
-    font-family:'Microsoft YaHei', Arial, Helvetica, sans-serif!important;
-    font-weight: normal;
-    overflow-x: hidden;
-    width:$winw;
-    position: relative;
+#container{
+  display: block;
+  width:$winw;
+  margin: 0 auto;
 }
 .clear{
   width:100%;
@@ -39,6 +38,9 @@ a, input{
 }
 .b_e0{
   border-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAE1JREFUeNpsjUsKwDAIRKci3v+CgYi3UIjNZFVCHwwu5uMTEZ2ZMDPwqirWWsAYozf4as7ZwuSNiEBYv+GUcPMPpevuzfp5uqkqvAIMAIGPMmoPeFO3AAAAAElFTkSuQmCC) 2 stretch repeat !important;
+}
+.b_d1{
+  border-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACtJREFUeNpivHjx4n8GLIAFROjp6TEiC166dOk/EwMOQLoEC8xMdAmAAAMA474K9ygUw3kAAAAASUVORK5CYII=) 2 stretch repeat !important;
 }
 
 .container{

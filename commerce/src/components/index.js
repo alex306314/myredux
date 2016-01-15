@@ -1,0 +1,6 @@
+export { default as Carousel } from './Carousel'
+export { default as Header } from './Header'
+export { default as IScrollPullRefresh } from './IScrollPullRefresh'
+export { default as ISlideMenu } from './ISlideMenu'
+export { default as NewsList } from './NewsList'
+//export { default as  } from './'

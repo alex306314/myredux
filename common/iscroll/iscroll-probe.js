@@ -562,15 +562,22 @@ IScroll.prototype = {
 		//}
     //自定义修改
     //console.log(this.canRefresh)
-    if( (
-        (this.canRefresh && !this.canLoading)
+    if(this.options.isPullRefreshC){
+      if( (
+          (this.canRefresh && !this.canLoading)
           ||
-        (!this.canRefresh && this.canLoading)
+          (!this.canRefresh && this.canLoading)
         )
-      && this.moved
-      && this.resetPosition(this.options.bounceTime)){
-      return
+        && this.moved
+        && this.resetPosition(this.options.bounceTime)){
+        return
+      }
+    }else{
+      if (this.resetPosition(this.options.bounceTime) ) {
+        	return;
+      }
     }
+
 
 		this.scrollTo(newX, newY);	// ensures that the last position is rounded
 

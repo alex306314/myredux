@@ -10,13 +10,15 @@ export default class NewsList extends React.Component
     const items = this.props.items;
     const baseKey = this.props.baseKey || 'mainlist'
     return (
-      <ul className="mui-table-view myul-list">
+      <ul className="i_news_list_ul">
         {items.map((item,i)=>{
           return (
-            <li className="mui-table-view-cell mui-media" key={baseKey+i}>
-              <a>
-                <img className="mui-media-object mui-pull-left" src={item.img}/>
-                <div className="mui-media-body">
+            <li className="li b_d1" key={baseKey+i}>
+              <a className="a">
+                <div className="imgw">
+                  <img className="img" src={item.img}/>
+                </div>
+                <div className="nbody">
                   <span className="liti">{item.title}</span>
                   <p className="lides">{item.des}</p>
                 </div>

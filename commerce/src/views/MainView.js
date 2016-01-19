@@ -13,12 +13,16 @@ import {
 
 import history from '../utils/history';
 
+const ID = 1;
+
 function mapStateToProps(state){
   return {
     currentMenuId: state.appReducer.get('currentMenuId'),
     menuItems: state.appReducer.get('menuItems').toJS(),
     imageItems: state.appReducer.get('imageItems').toJS(),
-    newsList: state.appReducer.get('newsList').toJS()
+    page: state.appReducer.getIn(['newsList','menu_id_'+ID, 'page']),
+    perPage: state.appReducer.getIn(['newsList','menu_id_'+ID, 'perPage']),
+    list: state.appReducer.getIn(['newsList','menu_id_'+ID, 'list']).toJS(),
   }
 }
 function mapDispatchToProps(dispatch){
@@ -35,14 +39,22 @@ class MainView extends React.Component
 {
   constructor(props, context){
     super(props, context)
-    this.state = {
-      menuId: 1
-    };
+    if(props.list.length == 0){
+      this.getData();
+    }
   }
   componentDidMount(){
   }
+  getData(){
+    g.getListData(
+      this.props.page,
+      this.props.perPage
+    ).then((listData)=>{
+        this.props.actions.setListData(ID,listData)
+      })
+      .catch((e)=>{})
+  }
   render(){
-    var indexNews = this.props.newsList['menu_id_'+this.state.menuId] || [];
     return (
       <div>
         <Header showSearch={true}/>
@@ -50,36 +62,48 @@ class MainView extends React.Component
         <div className="mui-content headercon">
           <IScrollPullRefresh
             height={innerHeight-44}
+            loadingHandle={this.loadingHandle.bind(this)}
+            refreshHandle={this.refreshHandle.bind(this)}
             >
 
-            <ISlideMenu items={this.props.menuItems} currentMenuId={this.state.menuId}/>
+            <ISlideMenu items={this.props.menuItems} currentMenuId={ID}/>
 
             <Carousel items={this.props.imageItems}/>
 
             <div className="mainrecti">热门推荐</div>
 
-            <NewsList items={indexNews} />
+            <NewsList items={this.props.list} />
           </IScrollPullRefresh>
         </div>
       </div>
     );
   }
-  handleRefresh(resolve, reject) {
-    // do some async code here
-    setTimeout(function(){
-      if (1) {
-        resolve();
-      } else {
-        reject();
-      }
-    },2000);
-
+  loadingHandle(){
+    var self = this;
+    return new Promise((resolve, reject)=>{
+      g.getListData(
+        this.props.page,
+        this.props.perPage
+      ).then((listData)=>{
+          self.props.actions.pendingListData(ID, listData)
+          var loadingWidthNoData = listData.list.length? false: true;
+          resolve(loadingWidthNoData)
+        })
+        .catch((e)=>reject(e))
+    })
   }
-  setTest(){
-    this.props.actions.setCurrentMenuId(3)
-  }
-  setImage(){
-    this.props.actions.setSlideImages([{img:'',title:'123'}])
+  refreshHandle(){
+    var self = this;
+    return new Promise((resolve, reject)=>{
+      g.getListData(
+        this.props.page,
+        this.props.perPage
+      ).then((listData)=>{
+          self.props.actions.setListData(ID,listData)
+          resolve()
+        })
+        .catch((e)=>reject(e))
+    })
   }
 }
 

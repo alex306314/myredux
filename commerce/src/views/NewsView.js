@@ -13,10 +13,14 @@ import {
   NewsList
 } from '../components'
 
+const ID = 2;
+
 function mapStateToProps(state){
   return {
     menuItems: state.appReducer.get('menuItems').toJS(),
-    newsList: state.appReducer.get('newsList').toJS()
+    page: state.appReducer.getIn(['newsList','menu_id_'+ID, 'page']),
+    perPage: state.appReducer.getIn(['newsList','menu_id_'+ID, 'perPage']),
+    list: state.appReducer.getIn(['newsList','menu_id_'+ID, 'list']).toJS(),
   }
 }
 function mapDispatchToProps(dispatch){
@@ -29,25 +33,63 @@ class NewsView extends React.Component
 {
   constructor(props){
     super(props)
-    this.state = {
-      menuId: 2,
-    };
+    if(props.list.length == 0){
+      this.getData();
+    }
+  }
+  getData(){
+    g.getListData(
+      this.props.page,
+      this.props.perPage
+    ).then((listData)=>{
+        this.props.actions.setListData(ID,listData)
+      })
+      .catch((e)=>{})
   }
   render(){
-    let {newsList} = this.props;
-    var indexNews = newsList['menu_id_' + this.state.menuId] || [];
     return (
       <div>
         <Header showSearch={false} title="电商资讯" />
 
         <div className="mui-content headercon">
-          <IScrollPullRefresh height={innerHeight-44}>
-            <ISlideMenu items={this.props.menuItems} currentMenuId={this.state.menuId} />
-            <NewsList items={indexNews} baseKey="category_list"/>
+          <IScrollPullRefresh
+            height={innerHeight-44}
+            loadingHandle={this.loadingHandle.bind(this)}
+            refreshHandle={this.refreshHandle.bind(this)}
+            >
+            <ISlideMenu items={this.props.menuItems} currentMenuId={ID} />
+            <NewsList items={this.props.list} baseKey="category_list"/>
           </IScrollPullRefresh>
         </div>
       </div>
     );
+  }
+  loadingHandle(){
+    var self = this;
+    return new Promise((resolve, reject)=>{
+      g.getListData(
+        this.props.page,
+        this.props.perPage
+      ).then((listData)=>{
+          self.props.actions.pendingListData(ID, listData)
+          var loadingWidthNoData = listData.list.length? false: true;
+          resolve(loadingWidthNoData)
+        })
+        .catch((e)=>reject(e))
+    })
+  }
+  refreshHandle(){
+    var self = this;
+    return new Promise((resolve, reject)=>{
+      g.getListData(
+        this.props.page,
+        this.props.perPage
+      ).then((listData)=>{
+          self.props.actions.setListData(ID,listData)
+          resolve()
+        })
+        .catch((e)=>reject(e))
+    })
   }
 }
 

@@ -20,3 +20,19 @@ export function setSlideImages(images){
     images:images
   }
 }
+
+export function setListData(menuId, data){
+  return {
+    type: types.SET_NEWS_LIST_DATA,
+    menuId: menuId,
+    data: data
+  }
+}
+
+export function pendingListData(menuId, data){
+  return {
+    type: types.PENDING_NEWS_LIST_DATA,
+    menuId:menuId,
+    data: data
+  }
+}

@@ -19,6 +19,8 @@ import {
   FinanceView,
   ContentView
 } from './views'
+
+import './utils'
 import '../../common/utils/uuid'
 
 const reducer = combineReducers(
@@ -28,6 +30,8 @@ let store = createStore(reducer);
 
 syncReduxAndRouter(history, store)
 g.store = store;
+g.state = store.getState().appReducer
+
 //<Route path="success" component={SuccessView}/>
 ReactDOM.render((
   <Provider store={store}>

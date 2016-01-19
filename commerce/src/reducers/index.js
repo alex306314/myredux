@@ -10,6 +10,14 @@ export function appReducer(state = initialState, action={}){
       return state.updateIn(['currentMenuId'],value=>action.id);
     case types.SET_SLIDE_IMAGES:
       return state.setIn(['imageItems'],Immutable.fromJS(action.images));
+    case types.SET_NEWS_LIST_DATA:
+      return state.setIn(['newsList','menu_id_'+action.menuId], Immutable.fromJS(action.data));
+    //加载更多数据
+    case types.PENDING_NEWS_LIST_DATA:
+      var newState = state.setIn(['newsList','menu_id_'+action.menuId, 'page'], action.data.page);
+      newState = newState.setIn(['newsList','menu_id_'+action.menuId, 'perPage'], action.data.perPage);
+      return newState.updateIn(['newsList','menu_id_'+action.menuId, 'list'],
+          list=>list.concat(action.data.list));
     default:
       return state;
   }

@@ -15,7 +15,6 @@ import {
 
 function mapStateToProps(state){
   return {
-    currentMenuId: state.appReducer.get('currentMenuId'),
     menuItems: state.appReducer.get('menuItems').toJS(),
     newsList: state.appReducer.get('newsList').toJS()
   }
@@ -26,24 +25,24 @@ function mapDispatchToProps(dispatch){
   }
 }
 
-class CategoryView extends React.Component
+class NewsView extends React.Component
 {
   constructor(props){
     super(props)
-    //更新当前menuId
-    this.props.actions.setCurrentMenuId(parseInt(this.props.routeParams.menuId))
+    this.state = {
+      menuId: 2,
+    };
   }
   render(){
-    let {newsList, currentMenuId} = this.props;
-    var indexNews = newsList['menu_id_' + currentMenuId] || [];
+    let {newsList} = this.props;
+    var indexNews = newsList['menu_id_' + this.state.menuId] || [];
     return (
       <div>
-        <Header showSearch={false} title="国内新闻" />
+        <Header showSearch={false} title="电商资讯" />
 
         <div className="mui-content headercon">
           <IScrollPullRefresh height={innerHeight-44}>
-            <ISlideMenu items={this.props.menuItems}
-                        currentMenuId={parseInt(this.props.routeParams.menuId)} />
+            <ISlideMenu items={this.props.menuItems} currentMenuId={this.state.menuId} />
             <NewsList items={indexNews} baseKey="category_list"/>
           </IScrollPullRefresh>
         </div>
@@ -52,4 +51,4 @@ class CategoryView extends React.Component
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryView);
+export default connect(mapStateToProps, mapDispatchToProps)(NewsView);

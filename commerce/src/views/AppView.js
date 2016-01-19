@@ -1,10 +1,25 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import * as actionsCreators from '../actions'
 
 
-export default class AppView extends React.Component
+function mapStateToProps(state){
+  return {
+
+  }
+}
+function mapDispatchToProps(dispatch){
+  return {
+    actions: bindActionCreators(actionsCreators, dispatch)
+  }
+}
+
+class AppView extends React.Component
 {
   constructor(porps){
     super(porps)
+    this.initImageSlide()
   }
   render(){
 
@@ -14,4 +29,17 @@ export default class AppView extends React.Component
       </div>
     );
   }
+  initImageSlide(){
+    let {setSlideImages} = this.props.actions;
+    $.ajax({
+      url: g.slideImagesUrl,
+      type:'get',
+      dataType:'json',
+      success: function(data){
+          setSlideImages(data)
+      }
+    });
+  }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppView);

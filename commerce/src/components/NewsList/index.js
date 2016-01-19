@@ -2,7 +2,8 @@
  * 资讯列表
  */
 import './style.scss'
-import React from 'react';
+import React from 'react'
+import {Link} from 'react-router'
 
 export default class NewsList extends React.Component
 {
@@ -14,7 +15,7 @@ export default class NewsList extends React.Component
         {items.map((item,i)=>{
           return (
             <li className="li b_d1" key={baseKey+i}>
-              <a className="a">
+              <Link to={"/detail/" + item.id} className="a">
                 <div className="imgw">
                   <img className="img" src={item.img}/>
                 </div>
@@ -22,7 +23,7 @@ export default class NewsList extends React.Component
                   <span className="liti">{item.title}</span>
                   <p className="lides">{item.des}</p>
                 </div>
-              </a>
+              </Link>
             </li>
           );
         })}

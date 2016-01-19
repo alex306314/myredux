@@ -14,7 +14,6 @@ export default class Carousel extends React.Component
       height:props.height||250,
       autoRun: props.autoRun || false,
       intervalTime: props.intervalTime || 5000,
-      items: props.items || []
     }
     this.hammer = -1;
     this.currentIdx = 1;
@@ -29,12 +28,21 @@ export default class Carousel extends React.Component
     this.interval = -1;
   }
   componentWidthUnMount(){
-    this.hammer.destroy();
-    this.hammer = -1;
-    this.clearInterval();
+    this.destroy()
+  }
+  componentWillUpdate(){
+    this.destroy()
+  }
+  componentDidUpdate(){
+    //console.log('update')
+    this.initActions();
   }
   componentDidMount(){
+    //console.log('mount')
+    this.initActions()
     //window.c = this;
+  }
+  initActions(){
     var self = this;
     this.$s = $('#'+this.state.id);
     this.$li = this.$s.find('.li');
@@ -65,7 +73,13 @@ export default class Carousel extends React.Component
       }, this.state.intervalTime)
     }
   }
-
+  destroy(){
+    if(this.hammer!=-1){
+      this.hammer.destroy();
+      this.hammer = -1;
+    }
+    this.clearInterval();
+  }
   /**
    * pan start
    * @param e
@@ -235,7 +249,7 @@ export default class Carousel extends React.Component
     return(
       <div id={this.state.id} className="iscroll_carousel">
         <div className="car_ul">
-          {this.state.items.map((item, i)=>{
+          {this.props.items.map((item, i)=>{
             var title = (typeof item.title=='undefined'||item.title=='')
                 ? ''
                 : (<p className="cati"><span className="pin">{item.title}</span></p>),
@@ -249,7 +263,7 @@ export default class Carousel extends React.Component
           })}
         </div>
         <div className="car_indicator">
-          {this.state.items.map((item, i)=>{
+          {this.props.items.map((item, i)=>{
             return i==0
               ? (<span key={'indc'+i} className="i active"></span>)
               : (<span key={'indc'+i} className="i"></span>)

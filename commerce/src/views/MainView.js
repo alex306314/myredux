@@ -33,14 +33,16 @@ function mapDispatchToProps(dispatch){
  */
 class MainView extends React.Component
 {
-  constructor(props){
-    super(props)
-    this.props.actions.setCurrentMenuId(1)
+  constructor(props, context){
+    super(props, context)
+    this.state = {
+      menuId: 1
+    };
   }
   componentDidMount(){
   }
   render(){
-    var indexNews = this.props.newsList['menu_id_'+this.props.currentMenuId] || [];
+    var indexNews = this.props.newsList['menu_id_'+this.state.menuId] || [];
     return (
       <div>
         <Header showSearch={true}/>
@@ -50,9 +52,9 @@ class MainView extends React.Component
             height={innerHeight-44}
             >
 
-            <ISlideMenu items={this.props.menuItems} />
+            <ISlideMenu items={this.props.menuItems} currentMenuId={this.state.menuId}/>
 
-            <Carousel items={this.props.imageItems} />
+            <Carousel items={this.props.imageItems}/>
 
             <div className="mainrecti">热门推荐</div>
 
@@ -72,6 +74,12 @@ class MainView extends React.Component
       }
     },2000);
 
+  }
+  setTest(){
+    this.props.actions.setCurrentMenuId(3)
+  }
+  setImage(){
+    this.props.actions.setSlideImages([{img:'',title:'123'}])
   }
 }
 

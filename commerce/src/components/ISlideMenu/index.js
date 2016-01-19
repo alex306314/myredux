@@ -16,6 +16,7 @@ export default class ISlideMenu extends React.Component
       items: props.items || [],
       currentMenuId: props.currentMenuId || 1
     }
+    //console.log(this.state.currentMenuId)
     this.$s = -1;
     this.hammer = -1;
     this.$ul = -1;
@@ -29,7 +30,6 @@ export default class ISlideMenu extends React.Component
     this.hammer = -1;
   }
   componentDidMount(){
-    window.c = this;
     var self = this;
     this.$s = $('#'+this.state.id);
     this.$ul = this.$s.find('ul');

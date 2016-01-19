@@ -13,3 +13,10 @@ export function setCurrentMenuId(menuId=1){
     id: menuId
   }
 }
+
+export function setSlideImages(images){
+  return {
+    type: types.SET_SLIDE_IMAGES,
+    images:images
+  }
+}

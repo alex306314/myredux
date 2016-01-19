@@ -12,7 +12,12 @@ import history from './utils/history';
 import {
   MainView,
   AppView,
-  CategoryView,
+  NewsView,
+  ExpertView,
+  DataView,
+  ConferenceView,
+  FinanceView,
+  ContentView
 } from './views'
 import '../../common/utils/uuid'
 
@@ -29,7 +34,12 @@ ReactDOM.render((
     <Router history={history}>
       <Route path="/" component={AppView}>
         <IndexRoute component={MainView} />
-        <Route path="category/:menuId" component={CategoryView} />
+        <Route path="/news" component={NewsView} />
+        <Route path="/expert" component={ExpertView} />
+        <Route path="/data" component={DataView} />
+        <Route path="/conference" component={ConferenceView} />
+        <Route path="/finance" component={FinanceView} />
+        <Route path="/detail/:id" component={ContentView} />
       </Route>
     </Router>
   </Provider>

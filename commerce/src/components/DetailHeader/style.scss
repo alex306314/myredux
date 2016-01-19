@@ -1,0 +1,37 @@
+$height:0.75rem;
+.detail_header{
+  height:$height;
+  position: fixed;
+  width:6.4rem;
+  z-index: 1000;
+  background: #a5cb13;
+  top:0;
+  left:50%;
+  margin-left:-3.2rem;
+  .btn{
+    display: inline-block;
+    margin:0;
+    padding:0;
+    height:$height;
+    line-height:$height;
+    color:white;
+    font-size:0.3rem;
+  }
+  .btn_back{
+    margin-left:0.1rem;
+    .tx{
+      margin-left:0.1rem;
+    }
+  }
+  .r{
+    float:right;
+    height: $height;
+    width:0.9rem;
+    text-align:center;
+    font-size:0.38rem;
+  }
+  .num{
+    font-size:0.28rem;
+    margin-left:0.05rem;
+  }
+}

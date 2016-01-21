@@ -1,28 +1,28 @@
 .c-main-header{
-  height:44px;
+  height:0.8rem;
   position: fixed;
   width:6.4rem;
   z-index: 1000;
   background: #a5cb13;
   a{
     color:white;
-    font-size: 17px;
+    font-size: 0.32rem;
     font-weight: 400;
   }
   .ti{
     display: inline-block;
-    line-height: 44px;
-    height:44px;
-    margin-left:10px;
+    line-height: 0.8rem;
+    height:0.8rem;
+    margin-left:0.2rem;
   }
   .hserh{
     display: block;
     float:right;
-    height:44px;
-    width:40px;
+    height:0.8rem;
+    width:0.4rem;
     text-align:center;
     span{
-      margin-top:10px;
+      margin-top:0.1rem;
     }
   }
 }

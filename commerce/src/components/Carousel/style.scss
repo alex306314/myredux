@@ -1,12 +1,15 @@
+$w:6.4rem;
+$h:3.8rem;
+
 .iscroll_carousel{
-  width:100%;
+  width:$w;
   position: relative;
-  height:250px;
+  height:$h;
   z-index: 50;
   .car_ul{
     display: block;
     width:6000px;
-    height:250px;
+    height:$h;
     margin:0;
     padding:0;
     overflow: hidden;
@@ -30,51 +33,51 @@
   }
   .caim{
     display: block;
-    width:100%;
-    height:100%;
+    width:$w;
+    height:$h;
     background: #d1d1d1;
   }
   .cati{
     display: block;
     position:absolute;
     z-index: 55;
-    width:100%;
-    height:40px;
+    width:6.4rem;
+    height:0.5rem;
     bottom:0;
     left:0;
-    color:white;
-    font-size:14px;
-    line-height: 40px;
+    color:#d1d1d1;
+    font-size:0.24rem;
+    line-height: 0.5rem;
     background-image: -webkit-linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0));
     background-image: linear-gradient(0deg, rgba(0,0,0,0.5), rgba(0,0,0,0));
     .pin{
-      margin-left:10px;
+      margin-left:0.2rem;
+      display: block;
+      width:5rem;
+      height:0.5rem;
+      line-height: 0.5rem;
+      overflow: hidden;
     }
   }
   .car_indicator{
     position: absolute;
-    bottom:15px;
-    right:10px;
+    bottom:0.15rem;
+    right:0.2rem;
     width:auto;
-    height:10px;
+    height:0.12rem;
     text-align: right;
-    line-height: 3px;
+    line-height: 0.12rem;
     z-index: 55;
+    font-size: 0.12rem;
     .i{
       display: inline-block;
-      width:4px;
-      height:4px;
-      margin-left:5px;
-      background-color:#999;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      border-radius: 50%;
+      width:0.12rem;
+      height:0.12rem;
+      margin-left:0.05rem;
+      color:#999;
       position: relative;
       &.active{
-        background: white;
-        width:6px;
-        height:6px;
-        top:1px;
+        color:white;
       }
     }
   }

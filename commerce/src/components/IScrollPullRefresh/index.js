@@ -31,6 +31,8 @@
 import './style.scss'
 import React from 'react'
 
+const HFZ = html_font_size;
+
 export default class IScrollPullRefresh extends React.Component
 {
   constructor(props){
@@ -41,7 +43,7 @@ export default class IScrollPullRefresh extends React.Component
       refreshIcon:'',
       refreshText: '下拉刷新',
       refreshTime: this.getTimeString(),
-      distance: 50
+      distance: 0.8
     };
     this.iscroll = null;
     this.isInAjax = false;
@@ -54,7 +56,7 @@ export default class IScrollPullRefresh extends React.Component
   componentDidMount(){
     var self = this
       ,$s = $('#'+self.state.id)
-      ,dis = self.state.distance
+      ,dis = self.state.distance*HFZ
       ,disr = dis * (-1)
       ,refreshHandle = this.props.refreshHandle || self.refreshHandle
       ,loadingHandle = this.props.loadingHandle || self.loadingHandle
@@ -193,9 +195,9 @@ export default class IScrollPullRefresh extends React.Component
     var self = this;
 
     $('#'+self.state.id+' .ptr_scroller').animate({
-      top: '-'+ self.state.distance +'px'
+      top: '-'+ (self.state.distance*HFZ) +'px'
     },timing,'linear',function(){
-      self.iscroll.scrollTo(0,self.state.distance*(-1),0)
+      self.iscroll.scrollTo(0,self.state.distance*HFZ*(-1),0)
     })
   }
 
@@ -215,22 +217,22 @@ export default class IScrollPullRefresh extends React.Component
       interactiveScrollbars:false,
       keyBindings:false,
       deceleration:self.props.deceleration||0.03,
-      startY:self.state.distance*(-1),
+      startY:self.state.distance*HFZ*(-1),
       //topOffset: self.state.distance*(-1),
       useTransform: false,
       bindToWrapper: true,
-      maxScrollY:-50,
+      maxScrollY:self.state.distance*HFZ,
       isPullRefreshC: true
     });
     //this.iscroll.scrollTo(0,self.state.distance*(-1),0)
   }
   render(){
-    var height = this.props.height || innerHeight;
+    var height = this.props.height || innerHeight/HFZ;
     var showLoading = this.props.showLoading || true;
-    var scrollerContent = $('#'+this.state.id).find('.scroll_inner').height();
+    var scrollerContent = $('#'+this.state.id).find('.scroll_inner').height()/HFZ;
 
     var scrollerHeight = scrollerContent<=height
-      ? (showLoading?height-this.state.distance:height) +0.5 +'px'
+      ? (showLoading?height-this.state.distance:height) +0.01 +'rem'
       : 'auto';
 
 
@@ -238,7 +240,7 @@ export default class IScrollPullRefresh extends React.Component
 
     return (
       <div id={this.state.id} className={"rd_iscroll_ptr "+loadingCls}
-           style={{height:height+'px'}}>
+           style={{height:height+'rem'}}>
         <div className="ptr_scroller" style={{height:scrollerHeight}}>
 
           <div className="pulldown">

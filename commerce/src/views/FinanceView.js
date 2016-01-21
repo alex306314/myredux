@@ -13,7 +13,7 @@ import {
   NewsList
 } from '../components'
 
-const ID = 6;
+const ID = 7;
 
 function mapStateToProps(state){
   return {
@@ -39,6 +39,7 @@ class FinanceView extends React.Component
   }
   getData(){
     g.getListData(
+      ID,
       this.props.page,
       this.props.perPage
     ).then((listData)=>{
@@ -53,7 +54,7 @@ class FinanceView extends React.Component
 
         <div className="mui-content headercon">
           <IScrollPullRefresh
-            height={innerHeight-44}
+            height={(innerHeight-0.8*html_font_size)/html_font_size}
             loadingHandle={this.loadingHandle.bind(this)}
             refreshHandle={this.refreshHandle.bind(this)}
             >
@@ -68,6 +69,7 @@ class FinanceView extends React.Component
     var self = this;
     return new Promise((resolve, reject)=>{
       g.getListData(
+        ID,
         this.props.page,
         this.props.perPage
       ).then((listData)=>{
@@ -82,7 +84,8 @@ class FinanceView extends React.Component
     var self = this;
     return new Promise((resolve, reject)=>{
       g.getListData(
-        this.props.page,
+        ID,
+        1,
         this.props.perPage
       ).then((listData)=>{
           self.props.actions.setListData(ID,listData)

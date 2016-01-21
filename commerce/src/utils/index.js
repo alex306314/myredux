@@ -4,12 +4,13 @@ window.g = window.g || {}
  * 获取资讯列表
  * @returns {Promise}
  */
-g.getListData = (page=1, perPage=10) => {
+g.getListData = (menuId=1, page=1, perPage=10) => {
   return new Promise((resolve, reject)=>{
     $.ajax({
       url:g.listUrl,
       type:'get',
       data: {
+        menuId: menuId,
         page:page,
         perPage:perPage
       },

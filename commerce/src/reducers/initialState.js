@@ -9,7 +9,7 @@ const initalState = Immutable.fromJS({
     {id:3, title:'专家专栏',href:'/expert'},
     {id:4, title:'数据报告',href:'/data'},
     {id:5, title:'会议培训',href:'/conference'},
-    {id:6, title:'创业融资',href:'/finance'},
+    {id:7, title:'创业融资',href:'/finance'},
   ],
   //首页轮播图片
   imageItems: [],
@@ -21,7 +21,7 @@ const initalState = Immutable.fromJS({
     menu_id_3:{page:1, perPage:10, list:[]},
     menu_id_4:{page:1, perPage:10, list:[]},
     menu_id_5:{page:1, perPage:10, list:[]},
-    menu_id_6:{page:1, perPage:10, list:[]},
+    menu_id_7:{page:1, perPage:10, list:[]},
   }
 });
 

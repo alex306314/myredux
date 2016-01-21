@@ -29,8 +29,8 @@ const reducer = combineReducers(
 let store = createStore(reducer);
 
 syncReduxAndRouter(history, store)
-g.store = store;
-g.state = store.getState().appReducer
+//g.store = store;
+//g.state = store.getState().appReducer
 
 //<Route path="success" component={SuccessView}/>
 ReactDOM.render((

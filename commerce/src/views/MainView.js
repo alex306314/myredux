@@ -47,7 +47,8 @@ class MainView extends React.Component
   }
   getData(){
     g.getListData(
-      this.props.page,
+      ID,
+      1,
       this.props.perPage
     ).then((listData)=>{
         this.props.actions.setListData(ID,listData)
@@ -61,7 +62,7 @@ class MainView extends React.Component
 
         <div className="mui-content headercon">
           <IScrollPullRefresh
-            height={innerHeight-44}
+            height={(innerHeight-0.8*html_font_size)/html_font_size}
             loadingHandle={this.loadingHandle.bind(this)}
             refreshHandle={this.refreshHandle.bind(this)}
             >
@@ -82,6 +83,7 @@ class MainView extends React.Component
     var self = this;
     return new Promise((resolve, reject)=>{
       g.getListData(
+        ID,
         this.props.page,
         this.props.perPage
       ).then((listData)=>{
@@ -96,7 +98,8 @@ class MainView extends React.Component
     var self = this;
     return new Promise((resolve, reject)=>{
       g.getListData(
-        this.props.page,
+        ID,
+        1,
         this.props.perPage
       ).then((listData)=>{
           self.props.actions.setListData(ID,listData)

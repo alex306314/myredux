@@ -6,13 +6,15 @@ import './style.scss'
 import React from 'react'
 import {Link} from 'react-router'
 
+const HFZ = html_font_size;
+
 export default class ISlideMenu extends React.Component
 {
   constructor(props){
     super(props)
     this.state = {
       id: g.utils.uuid(),
-      width:props.width || innerWidth,
+      width:props.width || 6.4,
       items: props.items || [],
       currentMenuId: props.currentMenuId || 1
     }
@@ -35,9 +37,9 @@ export default class ISlideMenu extends React.Component
     this.$ul = this.$s.find('ul');
 
     this.$s.find('li').each(function(i,n){
-      self.totalWidth += $(n).width();
+      self.totalWidth += ($(n).width());
     });
-    this.maxX = this.totalWidth - this.state.width;
+    this.maxX = this.totalWidth - this.state.width*HFZ;
 
     this.initStyle()
     this.hammer = new Hammer(this.$s[0]);
@@ -68,7 +70,7 @@ export default class ISlideMenu extends React.Component
       activeLeft = $a.position().left,
       activeWidth = $a.width();
     if(activeLeft>(this.state.width-activeWidth)/2){
-      var e = {deltaX:(activeLeft-(this.state.width-activeWidth)/2)*(-1)};
+      var e = {deltaX:(activeLeft-(this.state.width*HFZ-activeWidth)/2)*(-1)};
       this.panStart(e);
       this.panLeft(e);
       this.panEnd(e);
@@ -92,13 +94,13 @@ export default class ISlideMenu extends React.Component
   panEnd(e){
     var maxX = this.maxX * (-1);
     this.x = this.$ul.position().left;
-    if(this.totalWidth<=this.state.width || this.x>0){
+    if(this.totalWidth<=this.state.width*HFZ || this.x>0){
       this.$ul.css({
         transform: 'translateX(0px)',
         transition:'transform 0.4s'
       });
     }
-    if(this.totalWidth>this.state.width && this.x<maxX){
+    if(this.totalWidth>this.state.width*HFZ && this.x<maxX){
       this.$ul.css({
         transform: 'translateX('+maxX+'px)',
         transition:'transform 0.4s'

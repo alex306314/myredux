@@ -21,6 +21,9 @@ class AppView extends React.Component
     super(porps)
     this.initImageSlide()
   }
+  componentDidMount(){
+    $(document).on('dragstart',function(e){e.preventDefault()})
+  }
   render(){
 
     return (

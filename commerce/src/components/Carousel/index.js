@@ -4,14 +4,16 @@
 import './style.scss'
 import React from 'react'
 
+const HFZ = html_font_size;
+
 export default class Carousel extends React.Component
 {
   constructor(props){
     super(props);
     this.state = {
       id: g.utils.uuid(),
-      width: props.width||(innerWidth>640?640:innerWidth),
-      height:props.height||250,
+      width: props.width||6.4,
+      height:props.height||3.8,
       autoRun: props.autoRun || false,
       intervalTime: props.intervalTime || 5000,
     }
@@ -46,8 +48,8 @@ export default class Carousel extends React.Component
     var self = this;
     this.$s = $('#'+this.state.id);
     this.$li = this.$s.find('.li');
-    var width = this.state.width
-      ,height = this.state.height
+    var width = this.state.width*HFZ
+      ,height = this.state.height*HFZ
       ,a=1;
     this.currentIdx = this.$s.find('.li.active').index()+1;
     this.currentIdx = this.currentIdx<0?1:this.currentIdx;
@@ -107,8 +109,8 @@ export default class Carousel extends React.Component
       ,$n = this.$s.find('.li.next');
 
     this.animLeft($a,e.deltaX);
-    this.animLeft($p,this.state.width*(-1)-e.deltaX);
-    this.animLeft($n,this.state.width+e.deltaX);
+    this.animLeft($p,this.state.width*HFZ*(-1)-e.deltaX);
+    this.animLeft($n,this.state.width*HFZ+e.deltaX);
   }
 
   /**
@@ -121,8 +123,8 @@ export default class Carousel extends React.Component
       ,$p = this.$s.find('.li.prev')
       ,$n = this.$s.find('.li.next');
     this.animLeft($a,e.deltaX);
-    this.animLeft($p,this.state.width*(-1)+e.deltaX);
-    this.animLeft($n,this.state.width+e.deltaX);
+    this.animLeft($p,this.state.width*HFZ*(-1)+e.deltaX);
+    this.animLeft($n,this.state.width*HFZ+e.deltaX);
 
   }
 
@@ -134,18 +136,18 @@ export default class Carousel extends React.Component
     var self = this;
     if(this.total<2) return;
     //console.log(e)
-    var max = this.state.width/4;
+    var max = this.state.width*HFZ/4;
     max = this.isAuto?0:max;
-    var backTime = e.distance/this.state.width * this.time;
+    var backTime = e.distance/(this.state.width*HFZ) * this.time;
     var time = this.time - backTime;
     var $a = this.$s.find('.li.active')
       ,$p = this.$s.find('.li.prev')
       ,$n = this.$s.find('.li.next')
     if(e.distance>=max){
       var dir = e.deltaX<0?-1:1;
-      var left = this.state.width*dir,
-        pleft = e.deltaX<0?this.state.width*dir:0,
-        nleft = e.deltaX<0?0:this.state.width;
+      var left = this.state.width*HFZ*dir,
+        pleft = e.deltaX<0?this.state.width*HFZ*dir:0,
+        nleft = e.deltaX<0?0:this.state.width*HFZ;
 
       this.animLeft($a,left,time);
       this.animLeft($p,pleft,time);
@@ -160,8 +162,8 @@ export default class Carousel extends React.Component
         .eq(this.currentIdx-1).addClass('active');
     }else{
       this.animLeft($a,0,backTime);
-      this.animLeft($p,this.state.width*(-1),backTime);
-      this.animLeft($n,this.state.width,backTime);
+      this.animLeft($p,this.state.width*HFZ*(-1),backTime);
+      this.animLeft($n,this.state.width*HFZ,backTime);
     }
 
     if(this.state.autoRun && this.interval==-1){
@@ -217,13 +219,13 @@ export default class Carousel extends React.Component
       .eq(this.currentIdx-1).addClass('active').css({left:'0px'});
   }
   setStartPrev(){
-    var left = this.state.width*(-1);
+    var left = this.state.width*HFZ*(-1);
     this.prevIdx = this.currentIdx-1<=0?this.total:this.currentIdx-1;
     this.$li.removeClass('next prev')
       .eq(this.prevIdx-1).addClass('prev').css({left:left+'px'});
   }
   setStartNext(){
-    var left = this.state.width;
+    var left = this.state.width*HFZ;
     this.nextIdx = this.currentIdx+1 > this.total? 1 : this.currentIdx+1;
     this.$li.removeClass('next prev')
       .eq(this.nextIdx-1).addClass('next').css({left:left+'px'});
@@ -265,8 +267,8 @@ export default class Carousel extends React.Component
         <div className="car_indicator">
           {this.props.items.map((item, i)=>{
             return i==0
-              ? (<span key={'indc'+i} className="i active"></span>)
-              : (<span key={'indc'+i} className="i"></span>)
+              ? (<span key={'indc'+i} className="i active"><i className="fa fa-circle"></i></span>)
+              : (<span key={'indc'+i} className="i"><i className="fa fa-circle"></i></span>)
           })}
         </div>
       </div>

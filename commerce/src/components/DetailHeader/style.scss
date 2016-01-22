@@ -19,6 +19,7 @@ $height:0.75rem;
   }
   .btn_back{
     margin-left:0.1rem;
+    float:left;
     .tx{
       margin-left:0.1rem;
     }
@@ -33,5 +34,13 @@ $height:0.75rem;
   .num{
     font-size:0.28rem;
     margin-left:0.05rem;
+  }
+}
+.example-enter.example-enter-active{
+  .detail_header{
+    position: absolute;
+    left:0;
+    top:0;
+    margin-left:0;
   }
 }

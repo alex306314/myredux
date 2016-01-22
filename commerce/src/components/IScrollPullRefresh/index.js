@@ -43,10 +43,13 @@ export default class IScrollPullRefresh extends React.Component
       refreshIcon:'',
       refreshText: '下拉刷新',
       refreshTime: this.getTimeString(),
-      distance: 0.8
+      distance: 0.8,
+      showPullUpLoading: typeof props.showPullUpLoading!=='undefined'?props.showPullUpLoading:true,
+      showPullDownRefresh: typeof props.showPullDownRefresh!=='undefined'?props.showPullDownRefresh:true,
     };
     this.iscroll = null;
     this.isInAjax = false;
+    //console.log(this.state.showPullDownRefresh)
   }
   componentWillUnmount(){
     //销毁当前iscroll对象
@@ -72,7 +75,7 @@ export default class IScrollPullRefresh extends React.Component
       self.y = this.y
       self.directionY = this.directionY
       //下拉刷新
-      if(self.directionY<0){
+      if(self.directionY<0 && self.state.showPullDownRefresh){
         if(this.y<=0 && (this.y>disr) && self.iscroll.canRefresh){
           self.setRefresh3()
         }
@@ -83,7 +86,7 @@ export default class IScrollPullRefresh extends React.Component
       }
 
       //上拉加载更多
-      if(self.directionY>0){
+      if(self.directionY>0 && self.state.showPullUpLoading){
         var maxScrollY = this.maxScrollY + disr
           ,maxy = maxScrollY - this.y;
         //console.log(maxy)
@@ -101,7 +104,7 @@ export default class IScrollPullRefresh extends React.Component
 
       var _t = this;
       //下拉刷新
-      if( self.iscroll.canRefresh && !self.isInAjax){
+      if(self.state.showPullDownRefresh &&  self.iscroll.canRefresh && !self.isInAjax){
         self.isInAjax = true;
         //调用promise  .then-resolve   .catch->reject
         refreshHandle().then(()=>{
@@ -116,7 +119,7 @@ export default class IScrollPullRefresh extends React.Component
       }
 
       //下拉结束处理
-      if(self.iscroll.canLoading && !self.isInAjax ){
+      if(self.state.showPullUpLoading && self.iscroll.canLoading && !self.isInAjax ){
         self.isInAjax = true;
         loadingHandle().then((loadingWidthNoData)=>{
           //判断resolve函数是否有传参数
@@ -228,22 +231,22 @@ export default class IScrollPullRefresh extends React.Component
   }
   render(){
     var height = this.props.height || innerHeight/HFZ;
-    var showLoading = this.props.showLoading || true;
     var scrollerContent = $('#'+this.state.id).find('.scroll_inner').height()/HFZ;
-
+    var showLoading = this.state.showPullUpLoading;
     var scrollerHeight = scrollerContent<=height
       ? (showLoading?height-this.state.distance:height) +0.01 +'rem'
       : 'auto';
 
 
-    var loadingCls = showLoading?'show':'';
+    var loadingCls = showLoading?'':' hide';
+    var pullDownCls = this.state.showPullDownRefresh?'':' hide'
 
     return (
       <div id={this.state.id} className={"rd_iscroll_ptr "+loadingCls}
            style={{height:height+'rem'}}>
         <div className="ptr_scroller" style={{height:scrollerHeight}}>
 
-          <div className="pulldown">
+          <div className={'pulldown' + pullDownCls}>
             <i className={'fa si' + this.state.refreshIcon}></i>
             <span className="refreshText tx">{this.state.refreshText}</span>
             <span className="refreshTime tx">最近更新时间:&nbsp;{this.state.refreshTime}</span>

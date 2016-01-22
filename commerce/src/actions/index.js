@@ -14,6 +14,13 @@ export function setCurrentMenuId(menuId=1){
   }
 }
 
+export function setHeader(header){
+  return {
+    type:types.SET_HEADER,
+    header: header
+  }
+}
+
 export function setSlideImages(images){
   return {
     type: types.SET_SLIDE_IMAGES,

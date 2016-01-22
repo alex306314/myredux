@@ -4,10 +4,9 @@ import {bindActionCreators} from 'redux'
 import * as actionCreators from '../actions'
 
 import {
-  Header,
   IScrollPullRefresh,
   Carousel,
-  ISlideMenu,
+
   NewsList
 } from '../components'
 
@@ -17,7 +16,6 @@ const ID = 1;
 
 function mapStateToProps(state){
   return {
-    currentMenuId: state.appReducer.get('currentMenuId'),
     menuItems: state.appReducer.get('menuItems').toJS(),
     imageItems: state.appReducer.get('imageItems').toJS(),
     page: state.appReducer.getIn(['newsList','menu_id_'+ID, 'page']),
@@ -44,6 +42,8 @@ class MainView extends React.Component
     }
   }
   componentDidMount(){
+    this.props.actions.setHeader('陕西电子商务');
+    this.props.actions.setCurrentMenuId(ID);
   }
   getData(){
     g.getListData(
@@ -57,8 +57,7 @@ class MainView extends React.Component
   }
   render(){
     return (
-      <div>
-        <Header showSearch={true}/>
+      <div className="main_view_component" style={{height:innerHeight+'px'}}>
 
         <div className="mui-content headercon">
           <IScrollPullRefresh
@@ -66,8 +65,6 @@ class MainView extends React.Component
             loadingHandle={this.loadingHandle.bind(this)}
             refreshHandle={this.refreshHandle.bind(this)}
             >
-
-            <ISlideMenu items={this.props.menuItems} currentMenuId={ID}/>
 
             <Carousel items={this.props.imageItems}/>
 

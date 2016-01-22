@@ -2,7 +2,7 @@
  * 内容详页
  */
 import React from 'react'
-import { DetailHeader } from '../components'
+import { DetailHeader,IScrollPullRefresh  } from '../components'
 
 export default class ContentView extends React.Component
 {
@@ -17,10 +17,23 @@ export default class ContentView extends React.Component
     }
     this.getContent();
   }
+  componentWillMount(){
+    //$(".c-main-header").addClass("hide")
+    //$(".islide_menu").addClass("hide")
+    $("#container").addClass("detail_view");
+  }
+  componentWillUnMount(){
+    $("#container").removeClass("detail_view");
+  }
   render(){
     return(
       <div className="content_view">
         <DetailHeader />
+        <IScrollPullRefresh
+          height={(innerHeight-0.75*html_font_size)/html_font_size}
+          showPullUpLoading={false}
+          showPullDownRefresh={false}
+          >
         <div className="big_imgw">
           <img src={this.state.img} alt={this.state.title}/>
         </div>
@@ -28,6 +41,7 @@ export default class ContentView extends React.Component
         <div className="con"
              dangerouslySetInnerHTML={this.createMarkup()}>
         </div>
+        </IScrollPullRefresh>
       </div>
     );
   }

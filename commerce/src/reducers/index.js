@@ -6,6 +6,8 @@ window.Immutable = Immutable
 
 export function appReducer(state = initialState, action={}){
   switch(action.type){
+    case types.SET_HEADER:
+      return state.updateIn(['header'], value=>action.header);
     case types.SET_CURRENT_MENU_ID:
       return state.updateIn(['currentMenuId'],value=>action.id);
     case types.SET_SLIDE_IMAGES:

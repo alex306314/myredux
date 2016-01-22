@@ -38,6 +38,9 @@
   left:0;
   top:0;
   text-align: center;
+  &.hide{
+    display: none;
+  }
   .tx{
     display: block;
     font-size:0.22rem;

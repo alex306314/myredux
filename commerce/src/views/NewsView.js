@@ -7,10 +7,8 @@ import {bindActionCreators} from 'redux'
 import * as actionCreators from '../actions'
 
 import {
-  Header,
   IScrollPullRefresh,
-  ISlideMenu,
-  NewsList
+  NewsList,
 } from '../components'
 
 const ID = 2;
@@ -37,6 +35,10 @@ class NewsView extends React.Component
       this.getData();
     }
   }
+  componentDidMount(){
+    this.props.actions.setHeader(this.props.menuItems[ID]['title']);
+    this.props.actions.setCurrentMenuId(ID);
+  }
   getData(){
     g.getListData(
       ID,
@@ -49,8 +51,8 @@ class NewsView extends React.Component
   }
   render(){
     return (
-      <div>
-        <Header showSearch={false} title="电商资讯" />
+      <div className="main_view_component" style={{height:innerHeight+'px'}}>
+
 
         <div className="mui-content headercon">
           <IScrollPullRefresh
@@ -58,7 +60,6 @@ class NewsView extends React.Component
             loadingHandle={this.loadingHandle.bind(this)}
             refreshHandle={this.refreshHandle.bind(this)}
             >
-            <ISlideMenu items={this.props.menuItems} currentMenuId={ID} />
             <NewsList items={this.props.list} baseKey="category_list"/>
           </IScrollPullRefresh>
         </div>

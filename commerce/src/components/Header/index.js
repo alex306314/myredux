@@ -9,10 +9,9 @@ export default class Header extends React.Component
     var searhClass = this.props.showSearch?'hserh show':'hserh';
     return (
       <header className="c-main-header">
+
         <a className="ti">{title}</a>
-        <a className="hserh">
-          <span className="mui-icon mui-icon-search"></span>
-        </a>
+        <a className="btn btn_search"><i className="fa fa-search"></i></a>
       </header>
     );
   }

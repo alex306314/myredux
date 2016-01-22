@@ -108,21 +108,30 @@ export default class ISlideMenu extends React.Component
     }
   }
   render(){
+    let lidom = [];
+    for(var i in this.props.items){
+      var item = this.props.items[i];
+      var cls = item.id==this.state.currentMenuId ? 'active' : '';
+      var dom = (
+        <li key={'mni'+i} className={cls}>
+          <Link to={item.href} onClick={this.onclick.bind(this)}>{item.title}</Link>
+        </li>
+      );
+      lidom.push(dom);
+    }
+
     return (
       <div id={this.state.id} className="islide_menu">
         <div className="ulw">
           <ul>
-            {this.state.items.map((item, i)=>{
-              var cls = item.id==this.state.currentMenuId ? 'active' : '';
-              return (
-                <li key={'mni'+i} className={cls}>
-                  <Link to={item.href}>{item.title}</Link>
-                </li>
-              );
-            })}
+            {lidom}
           </ul>
         </div>
       </div>
     );
+  }
+  onclick(e){
+    $('#'+this.state.id + ' li').removeClass('active')
+    $(e.target).parent().addClass('active')
   }
 }

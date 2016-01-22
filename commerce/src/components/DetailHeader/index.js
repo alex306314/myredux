@@ -11,10 +11,16 @@ export default class DetailHeader extends React.Component
       totalDigg: props.totalDigg || 0
     }
   }
+  componentDidMount(){
+  }
   render(){
     return (
-      <header className="detail_header">
-        <a className="btn btn_back" onClick={()=>history.goBack()}>
+      <header className="detail_header" ref="header">
+        <a className="btn btn_back" onClick={()=>{
+        //$(".c-main-header").removeClass("hide")
+        //$(".islide_menu").removeClass("hide")
+        history.goBack()
+        }}>
           <i className="fa fa-chevron-left"></i>
           <span className="tx">返回</span>
         </a>

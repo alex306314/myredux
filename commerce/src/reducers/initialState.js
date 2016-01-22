@@ -1,16 +1,17 @@
 import Immutable from 'immutable'
 
 const initalState = Immutable.fromJS({
+  header:'陕西电子商务',   //标题
   //当前选中菜单ID
   currentMenuId: 1,
-  menuItems : [
-    {id:1, title:'首页',href:'/'},
-    {id:2, title:'电商资讯',href:'/news'},
-    {id:3, title:'专家专栏',href:'/expert'},
-    {id:4, title:'数据报告',href:'/data'},
-    {id:5, title:'会议培训',href:'/conference'},
-    {id:7, title:'创业融资',href:'/finance'},
-  ],
+  menuItems : {
+    1:{id:1, title:'首页',href:'/'},
+    2:{id:2, title:'电商资讯',href:'/news'},
+    3:{id:3, title:'专家专栏',href:'/expert'},
+    4:{id:4, title:'数据报告',href:'/data'},
+    5:{id:5, title:'会议培训',href:'/conference'},
+    7:{id:7, title:'创业融资',href:'/finance'},
+  },
   //首页轮播图片
   imageItems: [],
   //资讯列表

@@ -5,6 +5,11 @@ $height:0.6rem;
   width:100%;
   height:$height;
   line-height:$height;
+  padding-top:0.8rem;
+  z-index: 1000;
+  &.hide{
+    display: none;
+  }
   .ulw{
     display: block;
     width:100%;

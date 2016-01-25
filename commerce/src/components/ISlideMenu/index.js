@@ -6,18 +6,20 @@ import './style.scss'
 import React from 'react'
 import {Link} from 'react-router'
 
-const HFZ = html_font_size;
+var HFZ = html_font_size;
 
 export default class ISlideMenu extends React.Component
 {
   constructor(props){
     super(props)
+    HFZ = html_font_size;
     this.state = {
       id: g.utils.uuid(),
       width:props.width || 6.4,
       items: props.items || [],
       currentMenuId: props.currentMenuId || 1
     }
+
     //console.log(this.state.currentMenuId)
     this.$s = -1;
     this.hammer = -1;

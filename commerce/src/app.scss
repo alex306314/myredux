@@ -21,6 +21,16 @@ img{width:100%;}
   position: relative;
   overflow: hidden;
 }
+.preloading{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  text-align:center;
+  color:#999;
+  font-size: 16px;
+  padding:40px 0;
+}
 #container{
   display: block;
   width:$winw;

@@ -31,12 +31,13 @@
 import './style.scss'
 import React from 'react'
 
-const HFZ = html_font_size;
+var HFZ = html_font_size;
 
 export default class IScrollPullRefresh extends React.Component
 {
   constructor(props){
     super(props)
+    HFZ = html_font_size;
     this.state = {
       id: g.utils.uuid(),
       //下拉刷新显示图标

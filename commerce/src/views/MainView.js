@@ -61,7 +61,7 @@ class MainView extends React.Component
 
         <div className="mui-content headercon">
           <IScrollPullRefresh
-            height={(innerHeight-0.8*html_font_size)/html_font_size}
+            height={(innerHeight-1.4*html_font_size)/html_font_size}
             loadingHandle={this.loadingHandle.bind(this)}
             refreshHandle={this.refreshHandle.bind(this)}
             >

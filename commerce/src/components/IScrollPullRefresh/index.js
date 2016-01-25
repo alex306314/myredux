@@ -220,7 +220,7 @@ export default class IScrollPullRefresh extends React.Component
       fadeScrollbars:true,
       interactiveScrollbars:false,
       keyBindings:false,
-      deceleration:self.props.deceleration||0.03,
+      deceleration:self.props.deceleration||0.001,
       startY:self.state.distance*HFZ*(-1),
       //topOffset: self.state.distance*(-1),
       useTransform: false,

@@ -35,7 +35,7 @@ syncReduxAndRouter(history, store)
 
 //<Route path="success" component={SuccessView}/>
 $(document).on('viewReady', ()=>{
-
+ 
   ReactDOM.render((
     <Provider store={store}>
       <Router history={history}>
